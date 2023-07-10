@@ -49,5 +49,7 @@ jobs:
           git commit --amend -F new_commit_message.txt
           rm new_commit_message.txt
           git add .
+          git status
+          git branch
           git commit -m "Developper_commits"
-          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin aman --force
+          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin --force
