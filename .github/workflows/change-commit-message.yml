@@ -4,7 +4,10 @@ on:
   pull_request:
     types:
       - closed
-
+  workflow_call:
+  push:
+    branches:
+    - aman
 jobs:
   append-pull-request-link:
     runs-on: ubuntu-latest
