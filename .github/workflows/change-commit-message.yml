@@ -54,6 +54,7 @@ jobs:
           git branch
                     #git remote add origin https://github.com/OpsMx/kork-oes.git
                     git config --global  pull.ff true
+                    git pull
           git commit -m "Developper_commits"
           git push 
           git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin aman --force
