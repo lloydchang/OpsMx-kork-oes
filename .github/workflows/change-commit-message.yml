@@ -52,5 +52,8 @@ jobs:
           git add .
           git status
           git branch
+                    git remote add origin https://github.com/OpsMx/kork-oes.git
+
           git commit -m "Developper_commits"
-          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin --force
+          git push 
+          #git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin --force
