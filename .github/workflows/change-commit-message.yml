@@ -48,6 +48,7 @@ jobs:
           echo "$NEW_COMMIT_MESSAGE" > new_commit_message.txt
           git commit --amend -F new_commit_message.txt
           rm new_commit_message.txt
+          touch testing
           git add .
           git status
           git branch
