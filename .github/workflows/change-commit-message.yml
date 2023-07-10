@@ -33,6 +33,8 @@ jobs:
           # Retrieve the pull request number and repository name
           PULL_NUMBER="${{ github.event.pull_request.number }}"
           REPO_NAME="${{ github.repository }}"
+          
+          git pull
 
           # Get the latest commit SHA of the merged pull request
           LATEST_COMMIT_SHA=$(git log -1 --pretty=format:%H)
@@ -48,5 +50,4 @@ jobs:
           rm new_commit_message.txt
           git add .
           git commit -m "Developper_commits"
-          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin HEAD:refs/heads/aman
-
+          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin HEAD:refs/heads/aman --force
