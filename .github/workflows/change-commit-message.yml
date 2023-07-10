@@ -50,4 +50,4 @@ jobs:
           rm new_commit_message.txt
           git add .
           git commit -m "Developper_commits"
-          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin HEAD:refs/heads/aman --force
+          git push https://yugaa22:${{ secrets.GIT_TOKEN }}@github.com/opsmx/kork-oes.git origin aman --force
