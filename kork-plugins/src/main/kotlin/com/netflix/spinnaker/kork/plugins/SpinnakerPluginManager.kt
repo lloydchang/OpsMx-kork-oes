@@ -26,6 +26,7 @@ import com.netflix.spinnaker.kork.plugins.loaders.SpinnakerJarPluginLoader
 import com.netflix.spinnaker.kork.plugins.repository.PluginRefPluginRepository
 import com.netflix.spinnaker.kork.plugins.sdk.SdkFactory
 import com.netflix.spinnaker.kork.version.ServiceVersion
+import com.sun.org.slf4j.internal.LoggerFactory
 import java.nio.file.Files
 import java.nio.file.Path
 import org.pf4j.CompoundPluginLoader
@@ -62,7 +63,7 @@ open class SpinnakerPluginManager(
   private val spinnakerPluginFactory: PluginFactory
 ) : DefaultPluginManager(pluginsRoot) {
 
-  private val log by lazy { LoggerFactory.getLogger(javaClass) }
+  private val log = LoggerFactory.getLogger(javaClass)
 
   private val springExtensionFactory: ExtensionFactory = SpinnakerExtensionFactory(
     this,
@@ -117,7 +118,10 @@ open class SpinnakerPluginManager(
     SpinnakerPluginDescriptorFinder(this.getRuntimeMode())
 
   override fun loadPluginFromPath(pluginPath: Path): PluginWrapper? {
+
     val extractedPath = pluginBundleExtractor.extractService(pluginPath, serviceName) ?: return null
+    log.info("======sgk:loadPluginFromPath()-{}, serviceName-{}, extractedPath-{}", pluginPath, serviceName,extractedPath )
+
     return super.loadPluginFromPath(extractedPath)
   }
 

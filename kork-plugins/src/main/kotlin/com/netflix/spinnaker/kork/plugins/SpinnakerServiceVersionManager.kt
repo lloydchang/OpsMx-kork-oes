@@ -32,6 +32,7 @@ class SpinnakerServiceVersionManager(
   private val log by lazy { LoggerFactory.getLogger(javaClass) }
 
   override fun checkVersionConstraint(version: String, requires: String): Boolean {
+    log.info("======plugin version :version()-{}, requires-{} ", version, requires  )
 
     if (requires.isEmpty()) {
       log.warn("Loading plugin with empty Plugin-Requires attribute!")
@@ -44,6 +45,8 @@ class SpinnakerServiceVersionManager(
         .find { it.service.equals(serviceName, ignoreCase = true) }
 
     if (requirements != null) {
+      log.info("======plugin version :requirements()-{}  ", requirements.constraint  )
+
       return StringUtils.isNullOrEmpty(requirements.constraint) || Version.valueOf(version).satisfies(requirements.constraint)
     }
 
