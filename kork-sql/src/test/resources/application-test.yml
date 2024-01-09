@@ -1,16 +1,12 @@
 spring:
-  config:
-    activate:
-      on-profile: test
+  profiles: test
 
 sql:
   enabled: false
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: twodialects
+  profiles: twodialects
 
 sql:
   enabled: true
@@ -30,18 +26,14 @@ sql:
     jdbcUrl: "jdbc:h2:mem:test"
     user:
     password:
-    duplicateFileMode: WARN
   secondaryMigration:
     jdbcUrl: "jdbc:h2:mem:test"
     user:
     password:
-    duplicateFileMode: WARN
 ---
 
 spring:
-  config:
-    activate:
-      on-profile: singledialect
+  profiles: singledialect
 
 sql:
   enabled: true
@@ -60,4 +52,3 @@ sql:
     jdbcUrl: "jdbc:h2:mem:test"
     user:
     password:
-    duplicateFileMode: WARN

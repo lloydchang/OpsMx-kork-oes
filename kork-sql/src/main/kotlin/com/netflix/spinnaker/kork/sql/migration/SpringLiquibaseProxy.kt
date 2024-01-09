@@ -16,8 +16,6 @@
 package com.netflix.spinnaker.kork.sql.migration
 
 import com.netflix.spinnaker.kork.sql.config.SqlMigrationProperties
-import liquibase.GlobalConfiguration
-import liquibase.Scope
 import javax.sql.DataSource
 import liquibase.integration.spring.SpringLiquibase
 import org.springframework.jdbc.datasource.SingleConnectionDataSource
@@ -54,20 +52,18 @@ class SpringLiquibaseProxy(
     super.afterPropertiesSet()
 
     // Then if anything else has been defined, do that afterwards
-    Scope.child(GlobalConfiguration.DUPLICATE_FILE_MODE.key, sqlMigrationProperties.duplicateFileMode) {
-      (sqlMigrationProperties.additionalChangeLogs + korkAdditionalChangelogs)
-        .map {
-          SpringLiquibase().apply {
-            changeLog = "classpath:$it"
-            dataSource = createDataSource()
-            resourceLoader = this@SpringLiquibaseProxy.resourceLoader
-            shouldRun = !sqlReadOnly
-          }
+    (sqlMigrationProperties.additionalChangeLogs + korkAdditionalChangelogs)
+      .map {
+        SpringLiquibase().apply {
+          changeLog = "classpath:$it"
+          dataSource = createDataSource()
+          resourceLoader = this@SpringLiquibaseProxy.resourceLoader
+          shouldRun = !sqlReadOnly
         }
-        .forEach {
-          it.afterPropertiesSet()
-        }
-    }
+      }
+      .forEach {
+        it.afterPropertiesSet()
+      }
   }
 
   private fun createDataSource(): DataSource =
