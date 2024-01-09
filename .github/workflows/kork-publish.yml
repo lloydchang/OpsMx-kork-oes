@@ -2,9 +2,10 @@ name: Branch Build kork publish
  
 on:
   workflow_call:
+  workflow_dispatch:
   push:
     branches:
-    - OES-1.30.x-master-adhoc
+    - dec6
  
 env:
   GRADLE_OPTS: -Dorg.gradle.daemon=false -Xmx6g -Xms6g
